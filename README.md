@@ -1,48 +1,67 @@
-# Astro Starter Kit: Basics
+# 🎞️ 215files – Audiovisual Collective Website
 
-```sh
-npm create astro@latest -- --template basics
-```
+A visually-driven website developed with [Astro](https://astro.build/) and [TailwindCSS](https://tailwindcss.com/) for the audiovisual collective [**215files**](https://215files.netlify.app/).  
+This platform showcases the photographic and videographic work of young talents from Alcorcón.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+> 🚀 Deployed on [Netlify](https://www.netlify.com/) with continuous integration.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+👉 **[Visit the project](https://your-deployment-link.netlify.app)**
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+---
 
-## 🚀 Project Structure
+## 📑 Table of Contents
 
-Inside of your Astro project, you'll see the following folders and files:
+- [Overview](#-overview)
+- [Role](#-role)
+- [Features](#-features)
+- [Deployment](#-deployment)
+- [Tech Stack](#-tech-stack)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧭 Overview
 
-## 🧞 Commands
+**215files** is a modern and visually engaging website created to highlight the work of the **215files collective**, a group of young creatives from Alcorcón focused on urban photography and video production.
 
-All commands are run from the root of the project, from a terminal:
+This digital showcase was built to give visibility to the collective’s artistic projects, prioritizing performance, visual identity, and a clean aesthetic.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+My contribution was twofold:
+- 📷 As a **photographer**, capturing key moments during audiovisual sessions.
+- 💻 As a **developer**, building the site with Astro and TailwindCSS, ensuring optimal performance and user experience.
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 👨‍💻 Role
+
+**Photographer & Web Developer**  
+Responsible for creating original visual content and building the entire website using Astro and TailwindCSS.
+
+---
+
+## 🎬 Features
+
+- 📸 **Homepage**: A clean, static landing page featuring audiovisual and photographic works by the 215files team.
+- 🎨 **Visual-first Design**: Minimalist layout with focus on media content and urban narrative.
+- ⚡ **Fast Load Times**: Built with performance in mind to deliver a smooth browsing experience.
+
+---
+
+## 🚀 Deployment
+
+The site is deployed on **Netlify**, allowing fast and automated deployments directly from the Git repository.  
+Every code or content update is reflected immediately thanks to continuous integration.
+
+---
+
+## 🧪 Tech Stack
+
+- **Astro** – Static site generator for fast and modern websites
+- **TailwindCSS** – Utility-first CSS framework for responsive and aesthetic design
+- **Netlify** – Hosting and CI/CD platform
+
+---
+
+## 🙌 Acknowledgments
+
+Built with ❤️ by and for the 215files collective.
+
