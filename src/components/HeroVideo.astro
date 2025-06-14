@@ -1,0 +1,26 @@
+---
+interface Props {
+    videoId: string;
+}
+
+const { videoId = "1093268311" } = Astro.props;
+---
+
+<section class="relative w-full h-screen overflow-hidden m-0 p-0">
+    <div class="absolute top-0 left-0 w-full h-full m-0 p-0">
+        <iframe
+            src={`https://player.vimeo.com/video/${videoId}?h=6a88d9bb47&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1`}
+            class="absolute top-0 left-0 w-full h-full m-0 p-0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen
+        ></iframe>
+    </div>
+</section>
+
+<script>
+    // Cargar el API de Vimeo
+    const script = document.createElement('script');
+    script.src = 'https://player.vimeo.com/api/player.js';
+    document.head.appendChild(script);
+</script> 
