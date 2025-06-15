@@ -1,44 +1,64 @@
 ---
 const proyectos = [
   {
-    src: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
-    alt: "Proyecto 1"
+    src: "/src/assets/vermut.webp",
+    alt: "Proyecto Vermut",
+    youtube: "https://www.youtube.com/watch?v=5iG0sdvTcjQ"
   },
   {
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    alt: "Proyecto 2"
+    src: "/src/assets/pack.png",
+    alt: "Proyecto Pack",
+    youtube: "https://www.youtube.com/watch?v=go7UmQBKwyI"
   },
   {
-    src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca",
-    alt: "Proyecto 3"
+    src: "/src/assets/molotoff.png",
+    alt: "Proyecto Molotoff",
+    youtube: "https://www.youtube.com/watch?v=I860q8Y1QYI"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/mia.png",
+    alt: "Proyecto Mia",
+    youtube: "https://www.youtube.com/watch?v=km439spbPPY"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/losmismos.png",
+    alt: "Proyecto Los Mismos",
+    youtube: "https://www.youtube.com/watch?v=uUdJ0Xhs2bY"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/imagen8.webp",
+    alt: "Proyecto Imagen 8",
+    youtube: "https://www.youtube.com/watch?v=IffSrqln3S0"
+  },
+  // {
+  //   src: "/src/assets/imagen10.webp",
+  //   alt: "Proyecto Imagen 10",
+  //   youtube: "https://www.youtube.com/watch?v=xxxxxxx7"
+  // },
+  {
+    src: "/src/assets/imagen5.webp",
+    alt: "Proyecto Imagen 5",
+    youtube: "https://www.youtube.com/watch?v=McFunudGajI"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/imagen6.webp",
+    alt: "Proyecto Imagen 6",
+    youtube: "https://www.youtube.com/watch?v=ltO0-YYpuJ8"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/deambulando.png",
+    alt: "Proyecto Deambulando",
+    youtube: "https://www.youtube.com/watch?v=IsK-9O-MHy8"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/demasiado.png",
+    alt: "Proyecto Demasiado",
+    youtube: "https://www.youtube.com/watch?v=RLPGVy0SUEI"
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-    alt: "Proyecto 4"
+    src: "/src/assets/cuchillas.webp",
+    alt: "Proyecto Cuchillas",
+    youtube: "https://www.youtube.com/watch?v=F3DPQYdJPbI"
   }
 ];
 ---
@@ -65,6 +85,7 @@ const proyectos = [
         {proyectos.map((proyecto) => (
           <div class="swiper-slide">
             <img src={proyecto.src} alt={proyecto.alt} class="rounded-2xl w-full h-80 object-cover" />
+            <a href={proyecto.youtube} target="_blank" rel="noopener noreferrer" class="block mt-2 text-center text-white underline hover:text-[rgb(255,43,57)] transition-colors">Ver video en YouTube</a>
           </div>
         ))}
       </div>
