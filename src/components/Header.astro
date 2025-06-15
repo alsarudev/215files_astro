@@ -13,8 +13,8 @@ const menuItems = [
 ];
 ---
 
-<header class="fixed top-0 left-0 w-screen z-50 transition-all duration-300" id="main-header">
-    <nav class="container mx-auto px-8 md:px-16 lg:px-24">
+<header class="fixed top-0 left-0 w-screen z-50 transition-all duration-300 pt-8" id="main-header">
+    <nav class="container mx-auto px-8 md:px-16 lg:px-24 pb-5">
         <div class="flex items-center justify-center md:justify-between">
             <div id="logo" class="w-72 md:w-50 lg:w-62 flex items-center mt-3">
                 <img 
@@ -23,11 +23,11 @@ const menuItems = [
                     class="w-full h-auto"
                 />
             </div>
-            <div id="navbar" class="hidden md:flex space-x-16 items-center pt-3">
+            <div id="navbar" class="hidden md:flex space-x-16 items-center m-2 pt-3">
                 {menuItems.map((item) => (
                     <a 
                         href={item.href} 
-                        class="text-white hover:text-[rgb(255,43,57)] font-medium transition-all duration-300 hover:scale-110 text-xl md:text-2xl lg:text-2xl"
+                        class="text-white hover:text-[rgb(255,43,57)] font-medium transition-all duration-300 hover:scale-110 text-xl md:text-xl lg:text-3xl"
                     >
                         {item.text}
                     </a>
@@ -36,3 +36,28 @@ const menuItems = [
         </div>
     </nav>
 </header>
+
+<script>
+    // Intersection Observer para el fondo animado del header
+    const header = document.getElementById('main-header');
+    const proyectosSection = document.getElementById('proyectos');
+    const heroSection = document.getElementById('hero');
+    
+    function setHeaderBg(show) {
+        if (show) {
+            header.classList.add('bg-black/80');
+        } else {
+            header.classList.remove('bg-black/80');
+        }
+    }
+    
+    if (header && proyectosSection && heroSection) {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setHeaderBg(!entry.isIntersecting);
+            },
+            { root: null, threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+        );
+        observer.observe(heroSection);
+    }
+</script>
