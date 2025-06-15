@@ -3,7 +3,7 @@
 @layer base {
 
   body {
-    @apply bg-white;
+    @apply bg-black;
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   }
 

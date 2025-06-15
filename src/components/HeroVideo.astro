@@ -6,14 +6,30 @@ interface Props {
 const { videoId = "1093268311" } = Astro.props;
 ---
 
-<section class="relative w-full h-screen overflow-hidden m-0 p-0">
-    <div class="absolute top-0 left-0 w-full h-full m-0 p-0">
+<section id="hero" class="relative w-full h-screen min-h-screen overflow-hidden m-0 p-0">
+    <div id="video-loader" class="absolute inset-0 flex items-center justify-center bg-black z-20">
+        <img src="/loading.gif" alt="Cargando video..." class="w-24 h-24" />
+    </div>
+    <!-- Iframe horizontal para desktop/tablet -->
+    <div class="absolute inset-0 w-full h-full m-0 p-0 hidden md:block">
         <iframe
             src={`https://player.vimeo.com/video/${videoId}?h=6a88d9bb47&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1`}
-            class="absolute top-0 left-0 w-full h-full m-0 p-0"
+            class="absolute inset-0 w-full h-full m-0 p-0 block scale-110"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             allowfullscreen
+            onload="document.getElementById('video-loader').style.display='none'"
+        ></iframe>
+    </div>
+    <!-- Iframe vertical para móvil -->
+    <div class="absolute inset-0 w-full h-full m-0 p-0 block md:hidden">
+        <iframe
+            src={`https://player.vimeo.com/video/1093469948?h=e9886a5840&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1`}
+            class="absolute inset-0 w-full h-full m-0 p-0 block scale-110"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen
+            onload="document.getElementById('video-loader').style.display='none'"
         ></iframe>
     </div>
 </section>

@@ -1,36 +1,78 @@
 ---
-// No se requieren props por ahora
+const proyectos = [
+  {
+    src: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
+    alt: "Proyecto 1"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    alt: "Proyecto 2"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca",
+    alt: "Proyecto 3"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    alt: "Proyecto 4"
+  }
+];
 ---
 
 <!-- Swiper.js CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
-<section id="proyectos" class="w-full py-20 px-4 md:px-8 relative bg-black">
-  <div class="flex items-center mb-8 w-full px-4">
+<section class="bg-black py-12">
+  <div class="flex items-center mb-10 w-full px-4">
     <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-right:1rem;"></div>
     <h2 class="text-center text-white text-4xl font-extrabold tracking-wider whitespace-nowrap">PROYECTOS</h2>
     <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-left:1rem;"></div>
   </div>
-  <div class="swiper proyectos-swiper max-w-7xl mx-auto px-4">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Proyecto 1" class="rounded-2xl w-full h-80 object-cover" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Proyecto 2" class="rounded-2xl w-full h-80 object-cover" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca" alt="Proyecto 3" class="rounded-2xl w-full h-80 object-cover" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e" alt="Proyecto 4" class="rounded-2xl w-full h-80 object-cover" />
+  <div class="relative">
+    <button id="arrow-left" class="hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/60 rounded-full hover:bg-white/80 transition-colors group">
+      <svg class="w-6 h-6 text-white group-hover:-translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="arrow-right" class="hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/60 rounded-full hover:bg-white/80 transition-colors group">
+      <svg class="w-6 h-6 text-white group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="swiper proyectos-swiper max-w-7xl mx-auto px-4">
+      <div class="swiper-wrapper">
+        {proyectos.map((proyecto) => (
+          <div class="swiper-slide">
+            <img src={proyecto.src} alt={proyecto.alt} class="rounded-2xl w-full h-80 object-cover" />
+          </div>
+        ))}
       </div>
     </div>
   </div>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-      new Swiper('.proyectos-swiper', {
+      const swiper = new Swiper('.proyectos-swiper', {
         slidesPerView: 1,
         spaceBetween: 30,
         breakpoints: {
@@ -40,8 +82,11 @@
         loop: true,
         grabCursor: true,
         centeredSlides: false,
-        autoplay: { delay: 1500, disableOnInteraction: false },
+        autoplay: { delay: 3500, disableOnInteraction: false },
       });
+      // Flechas
+      document.getElementById('arrow-left').addEventListener('click', () => swiper.slidePrev());
+      document.getElementById('arrow-right').addEventListener('click', () => swiper.slideNext());
     });
   </script>
 </section> 
