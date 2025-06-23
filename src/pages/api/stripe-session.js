@@ -5,6 +5,8 @@ export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 
+const DOMAIN = import.meta.env.PUBLIC_DOMAIN || 'http://localhost:4321';
+
 const priceMap = {
   'Proyecto Vermut': 'price_1Rd8uQQLsiYu05CPIzAs8nnK',
 };
@@ -25,8 +27,8 @@ export async function POST({ request }) {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
-      success_url: 'http://localhost:4321/success',
-      cancel_url: 'http://localhost:4321/cancel',
+      success_url: `${DOMAIN}/success`,
+      cancel_url: `${DOMAIN}/cancel`,
     });
 
     return new Response(JSON.stringify({ id: session.id }), {
