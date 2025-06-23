@@ -70,21 +70,17 @@ class ContactFormHandler {
     }
 
     showSuccessModal() {
-        this.successModal.classList.remove('hidden');
-        this.successModal.classList.add('flex');
+        this.successModal.style.display = 'flex';
     }
 
     showErrorModal(message) {
         this.errorMessage.textContent = message;
-        this.errorModal.classList.remove('hidden');
-        this.errorModal.classList.add('flex');
+        this.errorModal.style.display = 'flex';
     }
 
     closeModals() {
-        this.successModal.classList.add('hidden');
-        this.successModal.classList.remove('flex');
-        this.errorModal.classList.add('hidden');
-        this.errorModal.classList.remove('flex');
+        this.successModal.style.display = 'none';
+        this.errorModal.style.display = 'none';
     }
 
     setupModalListeners() {
