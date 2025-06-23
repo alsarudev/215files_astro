@@ -74,6 +74,10 @@ export async function POST({ request }) {
         mode: 'payment',
         success_url: `${DOMAIN}/success`,
         cancel_url: `${DOMAIN}/cancel`,
+        allow_promotion_codes: true,
+        shipping_address_collection: {
+          allowed_countries: ['ES']
+        }
       });
       return new Response(JSON.stringify({ id: session.id }), {
         status: 200,
