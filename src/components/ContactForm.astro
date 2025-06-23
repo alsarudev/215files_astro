@@ -1,11 +1,26 @@
+---
+// Configuración del formulario
+const formConfig = {
+  fields: [
+    { id: 'name', type: 'text' as const, label: 'Nombre', required: true },
+    { id: 'email', type: 'email' as const, label: 'Email', required: true },
+    { id: 'message', type: 'textarea' as const, label: 'Mensaje', required: true, rows: 6 }
+  ]
+};
+---
+<script src="/js/contact-form.js" defer></script> 
 <section class="w-full py-20 px-4 md:px-8 relative bg-black scroll-mt-24" id="contacto">
+    <!-- Título de la sección -->
     <div class="flex items-center mb-8 w-full px-4">
         <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-right:1rem;"></div>
         <h2 class="text-center text-white text-4xl font-extrabold tracking-wider whitespace-nowrap">CONTACTO</h2>
         <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-left:1rem;"></div>
     </div>
+
     <div class="container mx-auto max-w-4xl">
+        <!-- Formulario de contacto -->
         <form id="contactForm" class="space-y-6">
+            <!-- Campos del formulario -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="name" class="block text-white mb-2">Nombre</label>
@@ -29,6 +44,7 @@
                 </div>
             </div>
             
+            <!-- Campo de mensaje -->
             <div>
                 <label for="message" class="block text-white mb-2">Mensaje</label>
                 <textarea 
@@ -40,6 +56,7 @@
                 ></textarea>
             </div>
             
+            <!-- Botón de envío -->
             <div class="text-center">
                 <button 
                     type="submit" 
@@ -92,111 +109,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            const form = document.getElementById('contactForm') as HTMLFormElement;
-            const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
-            const successModal = document.getElementById('successModal') as HTMLElement;
-            const errorModal = document.getElementById('errorModal') as HTMLElement;
-            const errorMessage = document.getElementById('errorMessage') as HTMLElement;
-            const closeSuccessModal = document.getElementById('closeSuccessModal') as HTMLButtonElement;
-            const closeErrorModal = document.getElementById('closeErrorModal') as HTMLButtonElement;
-            
-            // Función para mostrar modal de éxito
-            function showSuccessModal() {
-                successModal.classList.remove('hidden');
-                successModal.classList.add('flex');
-            }
-            
-            // Función para mostrar modal de error
-            function showErrorModal(message: string) {
-                errorMessage.textContent = message;
-                errorModal.classList.remove('hidden');
-                errorModal.classList.add('flex');
-            }
-            
-            // Función para cerrar modales
-            function closeModals() {
-                successModal.classList.add('hidden');
-                successModal.classList.remove('flex');
-                errorModal.classList.add('hidden');
-                errorModal.classList.remove('flex');
-            }
-            
-            if (form && submitBtn) {
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const originalText = submitBtn.textContent;
-                    submitBtn.textContent = 'Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    // Crear URLSearchParams en lugar de FormData
-                    const formData = new FormData(form);
-                    const params = new URLSearchParams();
-                    params.append('name', formData.get('name') as string);
-                    params.append('email', formData.get('email') as string);
-                    params.append('message', formData.get('message') as string);
-                    
-                    try {
-                        const response = await fetch('/api/contact', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: params
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (result.success) {
-                            showSuccessModal();
-                            form.reset();
-                        } else {
-                            showErrorModal(result.message || 'Error al enviar el mensaje');
-                        }
-                    } catch (error) {
-                        showErrorModal('Error de conexión. Verifica tu internet.');
-                        console.error('Error:', error);
-                    } finally {
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }
-                });
-            }
-            
-            // Event listeners para cerrar modales
-            if (closeSuccessModal) {
-                closeSuccessModal.addEventListener('click', closeModals);
-            }
-            
-            if (closeErrorModal) {
-                closeErrorModal.addEventListener('click', closeModals);
-            }
-            
-            // Cerrar modal al hacer clic fuera de él
-            if (successModal) {
-                successModal.addEventListener('click', (e) => {
-                    if (e.target === successModal) {
-                        closeModals();
-                    }
-                });
-            }
-            
-            if (errorModal) {
-                errorModal.addEventListener('click', (e) => {
-                    if (e.target === errorModal) {
-                        closeModals();
-                    }
-                });
-            }
-            
-            // Cerrar modal con la tecla Escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModals();
-                }
-            });
-        </script>
     </div>
-</section> 
+</section>
+
