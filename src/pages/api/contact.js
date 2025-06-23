@@ -1,5 +1,5 @@
 export const prerender = false;
-
+import 'dotenv/config';
 import nodemailer from 'nodemailer';
 
 export async function POST({ request }) {
