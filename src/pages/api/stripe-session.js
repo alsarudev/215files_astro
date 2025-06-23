@@ -4,9 +4,10 @@ import Stripe from 'stripe';
 export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+console.log('CLAVEEEEEEEEEEEE', import.meta.env.STRIPE_SECRET_KEY);
 
 const DOMAIN = import.meta.env.PUBLIC_DOMAIN || 'http://localhost:4321';
-
+console.log('DOMAIN', DOMAIN);
 const priceMap = {
   'Proyecto Vermut': 'price_1Rd8uQQLsiYu05CPIzAs8nnK',
 };
