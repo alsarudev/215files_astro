@@ -122,6 +122,8 @@ const proyectos = [
       // Flechas
       document.getElementById('arrow-left').addEventListener('click', () => swiper.slidePrev());
       document.getElementById('arrow-right').addEventListener('click', () => swiper.slideNext());
+
+      
       // Stripe Checkout
       const stripe = Stripe('pk_test_51Rd7pNQLsiYu05CPmjyD4byabVmrrgNRPRyF4R3TV3jpHZMLg89iGiyvIOsmvUhJK9dnUYJqdwxdTAx17MRGl5NP00VRz9hvaU');
 
@@ -141,7 +143,6 @@ const proyectos = [
             stripe.redirectToCheckout({ sessionId: data.id });
           } else {
             alert('Error al iniciar el pago.');
-            console.error(data.error);
           }
         });
       });

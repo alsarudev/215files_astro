@@ -5,10 +5,8 @@ import Stripe from 'stripe';
 export const prerender = false;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log('CLAVEEEEEEEEEEEE', process.env.STRIPE_SECRET_KEY);
 
 const DOMAIN = process.env.PUBLIC_DOMAIN || 'http://localhost:4321';
-console.log('DOMAIN', DOMAIN);
 const priceMap = {
   'Proyecto Vermut': 'price_1Rd8uQQLsiYu05CPIzAs8nnK',
 };
@@ -73,14 +71,12 @@ export async function POST({ request }) {
         headers: { 'Content-Type': 'application/json' },
       });
     } catch (stripeError) {
-      console.error('Error de Stripe:', stripeError);
       return new Response(JSON.stringify({ error: 'Error al crear la sesión de pago en Stripe.', details: stripeError.message }), {
         status: 502,
         headers: { 'Content-Type': 'application/json' },
       });
     }
   } catch (error) {
-    console.error('Error inesperado:', error);
     return new Response(JSON.stringify({ error: 'Error inesperado en el servidor.', details: error.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
