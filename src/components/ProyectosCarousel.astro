@@ -85,12 +85,26 @@ const proyectos = [
         {proyectos.map((proyecto) => (
           <div class="swiper-slide">
             <img src={proyecto.src} alt={proyecto.alt} class="rounded-2xl w-full h-80 object-cover" />
-            <a href={proyecto.youtube} target="_blank" rel="noopener noreferrer" class="block mt-2 text-center text-white underline hover:text-[rgb(255,43,57)] transition-colors">Ver video en YouTube</a>
+            <a
+              href={proyecto.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block mt-2 text-center text-white underline hover:text-[rgb(255,43,57)] transition-colors"
+            >
+              Ver video en YouTube
+            </a>
+            <button
+              class="mt-4 w-full bg-[rgb(255,43,57)] text-white font-bold py-2 px-4 rounded hover:bg-white hover:text-[rgb(255,43,57)] transition-colors stripe-buy-btn"
+              data-product={proyecto.alt}
+            >
+              Comprar
+            </button>
           </div>
         ))}
       </div>
     </div>
   </div>
+  <script src="https://js.stripe.com/v3/"></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
       const swiper = new Swiper('.proyectos-swiper', {
@@ -108,6 +122,29 @@ const proyectos = [
       // Flechas
       document.getElementById('arrow-left').addEventListener('click', () => swiper.slidePrev());
       document.getElementById('arrow-right').addEventListener('click', () => swiper.slideNext());
+      // Stripe Checkout
+      const stripe = Stripe('pk_test_51Rd7pNQLsiYu05CPmjyD4byabVmrrgNRPRyF4R3TV3jpHZMLg89iGiyvIOsmvUhJK9dnUYJqdwxdTAx17MRGl5NP00VRz9hvaU');
+
+      document.querySelectorAll('.stripe-buy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const product = btn.getAttribute('data-product');
+
+          const res = await fetch('/api/stripe-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ product }),
+          });
+
+          const data = await res.json();
+
+          if (data.id) {
+            stripe.redirectToCheckout({ sessionId: data.id });
+          } else {
+            alert('Error al iniciar el pago.');
+            console.error(data.error);
+          }
+        });
+      });
     });
   </script>
-</section> 
+</section>
