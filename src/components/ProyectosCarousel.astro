@@ -1,61 +1,68 @@
 ---
+const proyectosIds = JSON.parse(import.meta.env.PUBLIC_PROYECTOS_IDS || '{}');
 const proyectos = [
   {
+    id: proyectosIds["Proyecto Vermut"],
     src: "/assets/vermut.webp",
     alt: "Proyecto Vermut",
     youtube: "https://www.youtube.com/watch?v=5iG0sdvTcjQ"
   },
   {
+    id: proyectosIds["Proyecto Pack"],
     src: "/assets/pack.png",
     alt: "Proyecto Pack",
     youtube: "https://www.youtube.com/watch?v=go7UmQBKwyI"
   },
   {
+    id: proyectosIds["Proyecto Molotoff"],
     src: "/assets/molotoff.png",
     alt: "Proyecto Molotoff",
     youtube: "https://www.youtube.com/watch?v=I860q8Y1QYI"
   },
   {
+    id: proyectosIds["Proyecto Mia"],
     src: "/assets/mia.png",
     alt: "Proyecto Mia",
     youtube: "https://www.youtube.com/watch?v=km439spbPPY"
   },
   {
+    id: proyectosIds["Proyecto Los Mismos"],
     src: "/assets/losmismos.png",
     alt: "Proyecto Los Mismos",
     youtube: "https://www.youtube.com/watch?v=uUdJ0Xhs2bY"
   },
   {
+    id: proyectosIds["Proyecto Imagen 8"],
     src: "/assets/imagen8.webp",
     alt: "Proyecto Imagen 8",
     youtube: "https://www.youtube.com/watch?v=IffSrqln3S0"
   },
-  // {
-  //   src: "/assets/imagen10.webp",
-  //   alt: "Proyecto Imagen 10",
-  //   youtube: "https://www.youtube.com/watch?v=xxxxxxx7"
-  // },
   {
+    id: proyectosIds["Proyecto Imagen 5"],
     src: "/assets/imagen5.webp",
     alt: "Proyecto Imagen 5",
     youtube: "https://www.youtube.com/watch?v=McFunudGajI"
   },
   {
+    id: proyectosIds["Proyecto Imagen 6"],
     src: "/assets/imagen6.webp",
     alt: "Proyecto Imagen 6",
     youtube: "https://www.youtube.com/watch?v=ltO0-YYpuJ8"
   },
   {
+    id: proyectosIds["Proyecto Deambulando"],
     src: "/assets/deambulando.png",
     alt: "Proyecto Deambulando",
     youtube: "https://www.youtube.com/watch?v=IsK-9O-MHy8"
   },
   {
+    id: proyectosIds["Proyecto Demasiado"],
     src: "/assets/demasiado.png",
     alt: "Proyecto Demasiado",
     youtube: "https://www.youtube.com/watch?v=RLPGVy0SUEI"
   },
   {
+    id: proyectosIds["Proyecto Cuchillas"],
     src: "/assets/cuchillas.webp",
     alt: "Proyecto Cuchillas",
     youtube: "https://www.youtube.com/watch?v=F3DPQYdJPbI"
@@ -93,9 +100,10 @@ const proyectos = [
             >
               Ver video en YouTube
             </a>
+            <div class="text-center text-lg text-white font-semibold mt-2" id={`precio-${proyecto.id}`}>Cargando precio...</div>
             <button
               class="mt-4 w-full bg-[rgb(255,43,57)] text-white font-bold py-2 px-4 rounded hover:bg-white hover:text-[rgb(255,43,57)] transition-colors stripe-buy-btn"
-              data-product={proyecto.alt}
+              data-product={proyecto.id}
             >
               Comprar
             </button>

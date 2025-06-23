@@ -3,13 +3,8 @@ import 'dotenv/config';
 import Stripe from 'stripe';
 
 export const prerender = false;
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 const DOMAIN = process.env.PUBLIC_DOMAIN || 'http://localhost:4321';
-const priceMap = {
-  'Proyecto Vermut': 'price_1Rd8uQQLsiYu05CPIzAs8nnK',
-};
 
 export async function POST({ request }) {
   try {
@@ -36,13 +31,27 @@ export async function POST({ request }) {
         headers: { 'Content-Type': 'application/json' },
       });
     }
-    const priceId = priceMap[product];
-    if (!priceId) {
-      return new Response(JSON.stringify({ error: 'Producto no encontrado.' }), {
+    // Buscar el priceId en Stripe según el nombre del producto
+    let priceId = null;
+    let foundProduct;
+    try {
+      foundProduct = await stripe.products.retrieve(product);
+    } catch (e) {
+      // Si el producto no existe, Stripe lanza un error
+      return new Response(JSON.stringify({ error: 'Producto no encontrado en Stripe.' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' },
       });
     }
+    // Buscar el primer precio activo asociado a ese producto
+    const prices = await stripe.prices.list({ product: foundProduct.id, active: true, limit: 10 });
+    if (!prices.data.length) {
+      return new Response(JSON.stringify({ error: 'No hay precios activos para este producto en Stripe.' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    priceId = prices.data[0].id;
     // Validación de Stripe Key
     if (!process.env.STRIPE_SECRET_KEY) {
       return new Response(JSON.stringify({ error: 'Clave secreta de Stripe no configurada.' }), {
