@@ -5,7 +5,7 @@ import Stripe from 'stripe';
 export const prerender = false;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log('CLAVEEEEEEEEEEEE', import.meta.env.STRIPE_SECRET_KEY);
+console.log('CLAVEEEEEEEEEEEE', process.env.STRIPE_SECRET_KEY);
 
 const DOMAIN = process.env.PUBLIC_DOMAIN || 'http://localhost:4321';
 console.log('DOMAIN', DOMAIN);
