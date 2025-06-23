@@ -114,6 +114,8 @@ const proyectos = [
   </div>
   <script src="https://js.stripe.com/v3/"></script>
   <script type="text/javascript">
+  
+    // Swiper
     document.addEventListener('DOMContentLoaded', function () {
       const swiper = new Swiper('.proyectos-swiper', {
         slidesPerView: 1,
@@ -127,6 +129,7 @@ const proyectos = [
         centeredSlides: false,
         autoplay: { delay: 3500, disableOnInteraction: false },
       });
+
       // Flechas
       document.getElementById('arrow-left').addEventListener('click', () => swiper.slidePrev());
       document.getElementById('arrow-right').addEventListener('click', () => swiper.slideNext());
@@ -154,6 +157,20 @@ const proyectos = [
           }
         });
       });
+
+      // Cargar precios
+      (function() {
+        fetch('/api/stripe-prices')
+          .then(res => res.json())
+          .then(precios => {
+            Object.entries(precios).forEach(([id, precio]) => {
+              const el = document.getElementById(`precio-${id}`);
+              if (el) {
+                el.textContent = `${precio.amount} ${precio.currency}`;
+              }
+            });
+          });
+      })();
     });
   </script>
 </section>
