@@ -5,7 +5,7 @@
         <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-left:1rem;"></div>
     </div>
     <div class="container mx-auto max-w-4xl">
-        <form class="space-y-6">
+        <form id="contactForm" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="name" class="block text-white mb-2">Nombre</label>
@@ -43,11 +43,58 @@
             <div class="text-center">
                 <button 
                     type="submit" 
+                    id="submitBtn"
                     class="px-8 py-3 bg-[rgb(255,43,57)] text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium text-lg"
                 >
                     Enviar Mensaje
                 </button>
             </div>
         </form>
+
+        <script>
+            const form = document.getElementById('contactForm') as HTMLFormElement;
+            const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+            
+            if (form && submitBtn) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    const formData = new FormData(form);
+                    const params = new URLSearchParams();
+                    params.append('name', formData.get('name') as string);
+                    params.append('email', formData.get('email') as string);
+                    params.append('message', formData.get('message') as string);
+                    
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: params
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            alert('¡Mensaje enviado correctamente!');
+                            form.reset();
+                        } else {
+                            alert('Error al enviar el mensaje: ' + result.message);
+                        }
+                    } catch (error) {
+                        alert('Error al enviar el mensaje');
+                        console.error('Error:', error);
+                    } finally {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        </script>
     </div>
 </section> 
