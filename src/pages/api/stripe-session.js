@@ -14,32 +14,74 @@ const priceMap = {
 };
 
 export async function POST({ request }) {
-  const { product } = await request.json();
-
-  const priceId = priceMap[product];
-  if (!priceId) {
-    return new Response(JSON.stringify({ error: 'Producto no encontrado.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
   try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{ price: priceId, quantity: 1 }],
-      mode: 'payment',
-      success_url: `${DOMAIN}/success`,
-      cancel_url: `${DOMAIN}/cancel`,
-    });
-
-    return new Response(JSON.stringify({ id: session.id }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    // Validación de datos recibidos
+    if (!request) {
+      return new Response(JSON.stringify({ error: 'No se recibió la petición.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    let body;
+    try {
+      body = await request.json();
+    } catch (err) {
+      return new Response(JSON.stringify({ error: 'El cuerpo de la petición no es JSON válido.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const { product } = body;
+    if (!product) {
+      return new Response(JSON.stringify({ error: 'Falta el campo "product" en la petición.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const priceId = priceMap[product];
+    if (!priceId) {
+      return new Response(JSON.stringify({ error: 'Producto no encontrado.' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    // Validación de Stripe Key
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return new Response(JSON.stringify({ error: 'Clave secreta de Stripe no configurada.' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    // Validación de dominio
+    if (!DOMAIN) {
+      return new Response(JSON.stringify({ error: 'Dominio de redirección no configurado.' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    // Crear sesión de Stripe
+    try {
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{ price: priceId, quantity: 1 }],
+        mode: 'payment',
+        success_url: `${DOMAIN}/success`,
+        cancel_url: `${DOMAIN}/cancel`,
+      });
+      return new Response(JSON.stringify({ id: session.id }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    } catch (stripeError) {
+      console.error('Error de Stripe:', stripeError);
+      return new Response(JSON.stringify({ error: 'Error al crear la sesión de pago en Stripe.', details: stripeError.message }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
   } catch (error) {
-    console.error(error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error('Error inesperado:', error);
+    return new Response(JSON.stringify({ error: 'Error inesperado en el servidor.', details: error.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
