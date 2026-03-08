@@ -1,42 +1,79 @@
 ---
+import { getImage } from "astro:assets";
+import mobileBg from "../assets/iframe-videohome-mobile.png";
+import desktopBg from "../assets/iframe-videohome-desktop.png";
+
 interface Props {
     videoId: string;
 }
 
+
 const { videoId = "1093268311" } = Astro.props;
+
+// Optimizamos las imágenes automáticamente a WebP para que carguen de primera al instante
+const optimizedMobileBg = await getImage({ src: mobileBg, format: 'webp' });
+const optimizedDesktopBg = await getImage({ src: desktopBg, format: 'webp' });
 ---
 
-<section id="hero" class="relative w-full h-screen min-h-screen overflow-hidden m-0 p-0">
-    <div id="video-loader" class="absolute inset-0 flex items-center justify-center bg-black z-20">
-        <img src="/loading.gif" alt="Cargando video..." class="w-24 h-24" />
-    </div>
-    <!-- Iframe horizontal para desktop/tablet -->
-    <div class="absolute inset-0 w-full h-full m-0 p-0 hidden md:block">
+<section id="hero" class="relative w-full h-screen min-h-screen overflow-hidden m-0 p-0 bg-black">
+    <!-- Iframe horizontal para desktop/tablet con Imagen de Fondo (Truco Visual) -->
+    <div class="absolute inset-0 w-full h-full m-0 p-0 hidden md:block bg-cover bg-center mix-blend-normal z-10" style={`background-image: url('${optimizedDesktopBg.src}')`}>
         <iframe
-            src={`https://player.vimeo.com/video/${videoId}?h=6a88d9bb47&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1`}
-            class="absolute inset-0 w-full h-full m-0 p-0 block scale-110"
+            src={`https://player.vimeo.com/video/${videoId}?h=6a88d9bb47&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&dnt=1&quality=auto`}
+            class="vimeo-desktop opacity-0 transition-opacity duration-[1500ms]"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             allowfullscreen
-            onload="document.getElementById('video-loader').style.display='none'"
+            onload="this.classList.remove('opacity-0');"
         ></iframe>
     </div>
-    <!-- Iframe vertical para móvil -->
-    <div class="absolute inset-0 w-full h-full m-0 p-0 block md:hidden">
+    <!-- Iframe vertical para móvil con Imagen de Fondo (Truco Visual) -->
+    <div class="absolute inset-0 w-full h-full m-0 p-0 block md:hidden bg-cover bg-center mix-blend-normal z-10" style={`background-image: url('${optimizedMobileBg.src}')`}>
         <iframe
-            src={`https://player.vimeo.com/video/1093469948?h=e9886a5840&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1`}
-            class="absolute inset-0 w-full h-full m-0 p-0 block scale-110"
+            src={`https://player.vimeo.com/video/1093469948?h=e9886a5840&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&dnt=1&quality=auto`}
+            class="vimeo-mobile opacity-0 transition-opacity duration-[1500ms]"
             frameborder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             allowfullscreen
-            onload="document.getElementById('video-loader').style.display='none'"
+            onload="this.classList.remove('opacity-0');"
         ></iframe>
     </div>
 </section>
 
 <script>
-    // Cargar el API de Vimeo
+    // Cargar el API de Vimeo de manera asíncrona para no bloquear el renderizado visual del hero
     const script = document.createElement('script');
     script.src = 'https://player.vimeo.com/api/player.js';
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
-</script> 
+</script>
+
+<style>
+    /* Técnica de object-fit cover para iFrames */
+    .vimeo-desktop {
+        width: 100vw;
+        height: 56.25vw; /* 9/16 * 100 = 56.25 */
+        min-height: 100vh;
+        min-width: 177.77vh; /* 16/9 * 100 = 177.77 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        pointer-events: none;
+    }
+
+    .vimeo-mobile {
+        width: 100vw;
+        height: 177.77vw; /* 16/9 * 100 = 177.77 */
+        min-height: 100vh;
+        min-width: 56.25vh; /* 9/16 * 100 = 56.25 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        pointer-events: none;
+    }
+</style> 

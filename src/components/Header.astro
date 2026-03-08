@@ -1,44 +1,38 @@
 ---
 import logo from "../assets/logo-imagen.png";
-
-// Configuración del menú
-const menuItems = [
-    {
-        text: "PROYECTOS",
-        href: "#proyectos"
-    },
-    {
-        text: "CONTACTO",
-        href: "#contacto"
-    }
-];
 ---
 <script src="/js/header.js" defer></script>
-<header class="fixed top-0 left-0 w-screen z-50 transition-all duration-300 pt-8" id="main-header">
-    <nav class="container mx-auto px-8 md:px-16 lg:px-24 pb-5">
-        <div class="flex items-center justify-center md:justify-between">
-            <!-- Logo -->
-            <div id="logo" class="w-72 md:w-50 lg:w-62 flex items-center mt-3">
-                <a href="#" class="block w-full cursor-pointer transition-transform duration-300 hover:scale-105">
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 pt-6" id="main-header">
+    <nav class="container mx-auto px-4 md:px-8 flex justify-center">
+        <!-- Contenedor premium tipo isla o píldora -->
+        <div id="nav-container" class="relative flex items-center w-full max-w-5xl px-6 md:px-10 py-5 md:py-3 rounded-full transition-all duration-500 border border-transparent">
+            
+            <!-- Izquierda (Espaciador flexible constante para balancear el centrado matemático) -->
+            <div class="flex-1 hidden md:block"></div>
+            
+            <!-- Centro: Logo Absolutamente centrado siempre (Mobile & Desktop) -->
+            <div id="logo" class="absolute left-1/2 -translate-x-1/2 w-[14rem] md:w-52 lg:w-60 flex justify-center items-center">
+                <a href="#" class="block w-full cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95">
                     <img 
                         src={logo.src}
                         alt="Logo de 215 Files"
-                        class="w-full h-auto"
+                        class="w-full h-auto drop-shadow-lg"
                     />
                 </a>
             </div>
             
-            <!-- Menú de navegación -->
-            <div id="navbar" class="hidden md:flex space-x-16 items-center m-2 pt-3">
-                {menuItems.map((item) => (
-                    <a 
-                        href={item.href} 
-                        class="text-white hover:text-[rgb(255,43,57)] font-medium transition-all duration-300 hover:scale-110 text-xl md:text-xl lg:text-3xl"
-                    >
-                        {item.text}
-                    </a>
-                ))}
+            <!-- Derecha: Botón flotante 'Proyectos' (Estilo CTA Premium) -->
+            <div class="flex-1 flex justify-end items-center">
+                <a 
+                    href="#proyectos" 
+                    class="hidden md:inline-flex items-center gap-2 group text-white/90 hover:text-white font-semibold text-[11px] md:text-sm tracking-[0.2em] transition-all duration-300 uppercase bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 px-6 py-2.5 rounded-full"
+                >
+                    Proyectos
+                    <!-- Micro punto de led rojo luminoso -->
+                    <span class="w-1.5 h-1.5 bg-[rgb(255,43,57)] rounded-full group-hover:scale-[1.8] group-hover:bg-[#ff4d5a] transition-all duration-300 shadow-[0_0_10px_rgb(255,43,57)]"></span>
+                </a>
             </div>
+            
         </div>
     </nav>
 </header>
