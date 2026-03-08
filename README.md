@@ -1,228 +1,114 @@
 # 🎞️ 215files – Audiovisual Collective Website
 
-A visually-driven website developed with [Astro](https://astro.build/) and [TailwindCSS](https://tailwindcss.com/) for the audiovisual collective [**215files**](https://215files.netlify.app/).  
-This platform showcases the photographic and videographic work of young talents from Alcorcón.
+Plataforma oficial del colectivo audiovisual [**215files**](https://215files.netlify.app/), un grupo de talentos creativos enfocados en la fotografía y producción de vídeo urbano. 
 
-> 🚀 Deployed on [Netlify](https://www.netlify.com/) with continuous integration.
+Este proyecto web está diseñado bajo rigurosos estándares de rendimiento y con una estética premium inspirada de las grandes tecnológicas, integrando interfaces de cristal (Glassmorphism), micro-interacciones suaves y animaciones de scroll inmersivas.
 
-👉 **[Visit the project](https://your-deployment-link.netlify.app)**
+> 🚀 Desplegado de forma automatizada sobre la infraestructura global Edge de [Netlify](https://www.netlify.com/).
 
----
-
-## 📑 Table of Contents
-
-- [Overview](#-overview)
-- [Role](#-role)
-- [Features](#-features)
-- [Deployment](#-deployment)
-- [Tech Stack](#-tech-stack)
+👉 **[Visita el proyecto en vivo aquí](https://215files-astro.netlify.app)**
 
 ---
 
-## 🧭 Overview
+## ✨ Características Premium (UI/UX)
 
-**215files** is a modern and visually engaging website created to highlight the work of the **215files collective**, a group of young creatives from Alcorcón focused on urban photography and video production.
+La plataforma cuenta con detalles de diseño de vanguardia concebidos para lograr la máxima inmersión visual:
 
-This digital showcase was built to give visibility to the collective's artistic projects, prioritizing performance, visual identity, and a clean aesthetic.
-
-My contribution was twofold:
-- 📷 As a **photographer**, capturing key moments during audiovisual sessions.
-- 💻 As a **developer**, building the site with Astro and TailwindCSS, ensuring optimal performance and user experience.
-
----
-
-## 👨‍💻 Role
-
-**Photographer & Web Developer**  
-Responsible for creating original visual content and building the entire website using Astro and TailwindCSS.
+- 🎬 **Hero Video Optimizado**: Carga instantánea o *Zero-Delay* mediante compresión de pósters en `.webp` y un iframe asíncrono optimizado sin rastreadores `(DNT=1)`.
+- 🕹️ **Carrusel Coverflow 3D**: Visor de proyectos tipo "cinta cilíndrica" propulsado por Swiper, simulando efectos de profundidad tridimensional interactivas (`Apple-like peek-a-boo`).
+- 🪄 **Scroll Inmersivo con GSAP**: Animaciones fluidas programadas con `GreenSock (GSAP) & ScrollTrigger` que revelan sutilmente el contenido mientras desciendes (`fade-up`, `scale-in`, *laser-lines*).
+- 💎 **Diseño Glassmorphism**: Botones emergentes tipo pastilla y componentes translúcidos flotantes con destellos y sombreados de profundidad volumétrica.
+- ✉️ **Contacto Dinámico Serverless**: Formulario con Modales Premium y entrega de correos electrónicos en HTML Responsivo estructurado usando endpoints nativos.
 
 ---
 
-## 🎬 Features
+## 🛠️ Stack Tecnológico
 
-- 📸 **Homepage**: A clean, static landing page featuring audiovisual and photographic works by the 215files team.
-- 🎨 **Visual-first Design**: Minimalist layout with focus on media content and urban narrative.
-- ⚡ **Fast Load Times**: Built with performance in mind to deliver a smooth browsing experience.
+La web está construida buscando un balance perfecto entre velocidad pura (Sitios Estáticos) e interacciones dinámicas.
 
----
-
-## 🚀 Deployment
-
-The site is deployed on **Netlify**, allowing fast and automated deployments directly from the Git repository.  
-Every code or content update is reflected immediately thanks to continuous integration.
+*   ⚡ **[Astro](https://astro.build/)**: Framework de última generación renderizado en el servidor para entregar el HTML más veloz posible sin JavaScript innecesario.
+*   🎨 **[Tailwind CSS](https://tailwindcss.com/)**: Motor de estilos por utilidad, para layouts escalables y clases combinadas de *Backdrop Blurs*.
+*   🎞️ **[GSAP](https://gsap.com/)**: Motor de animaciones a nivel profesional de la industria.
+*   📫 **Nodemailer**: Procesamiento seguro de correos electrónicos bajo el capó.
+*   🚀 **Netlify**: Alojamiento rápido con Integración y Despliegue Continuo (CI/CD).
 
 ---
 
-## 🧪 Tech Stack
+## 📁 Arquitectura del Proyecto
 
-- **Astro** – Static site generator for fast and modern websites
-- **TailwindCSS** – Utility-first CSS framework for responsive and aesthetic design
-- **Netlify** – Hosting and CI/CD platform
-
----
-
-## 🙌 Acknowledgments
-
-Built with ❤️ by and for the 215files collective.
-
-# 215 Files - Sitio Web
-
-Sitio web profesional para 215 Files, construido con Astro y Tailwind CSS.
-
-## 🚀 Características
-
-- **Diseño moderno y responsive**
-- **Formulario de contacto funcional** con envío de emails
-- **Integración con Stripe** para pagos
-- **Código limpio y mantenible**
-- **Optimizado para SEO**
-- **Deploy automático en Netlify**
-
-## 🛠️ Tecnologías
-
-- **Astro** - Framework web
-- **Tailwind CSS** - Framework de estilos
-- **TypeScript** - Tipado estático
-- **Nodemailer** - Envío de emails
-- **Stripe** - Procesamiento de pagos
-- **Netlify** - Hosting y deploy
-
-## 📁 Estructura del Proyecto
-
-```
+```text
 src/
-├── components/          # Componentes reutilizables
-│   ├── ContactForm.astro
-│   ├── Header.astro
-│   ├── Footer.astro
-│   ├── HeroVideo.astro
-│   └── ProyectosCarousel.astro
-├── layouts/            # Layouts de página
-│   └── Layout.astro
-├── pages/              # Páginas y API routes
-│   ├── index.astro
-│   ├── success.astro
-│   ├── cancel.astro
-│   └── api/
-│       ├── contact.js
-│       ├── stripe-prices.js
-│       └── stripe-session.js
-├── utils/              # Utilidades y constantes
-│   ├── constants.ts
-│   └── helpers.ts
-├── styles/             # Estilos globales
-│   └── global.css
-└── assets/             # Imágenes y recursos
-
-public/
-├── js/                 # JavaScript del cliente
-│   ├── contact-form.js
-│   └── header.js
-└── assets/             # Assets públicos
+├── components/          # Fragmentos UI modulares (Astro)
+│   ├── ContactForm.astro     # Formulario avanzado con endpoints
+│   ├── Header.astro          # Navbar flotante (Isla de Cristal)
+│   ├── Footer.astro          # Cierre dinámico automatizado
+│   ├── HeroVideo.astro       # Video Vimeo y optimizaciones WebP
+│   └── ProyectosCarousel.astro # Lógica Coverflow 3D y Swiper
+├── layouts/             # Envoltorios de páginas maestras
+│   └── Layout.astro          # Motor GSAP y pre-conexiones globales
+├── pages/               # Rutas principales y Endpoints API
+│   ├── api/
+│   │   └── contact.js        # Procesador de backend de emails
+│   └── index.astro           # Vista Home
+├── styles/              # Reglas Universales
+│   └── global.css            # Fuentes Google (Inter) y variables
+└── assets/              # Archivos de Imagen fuente
+    └── ...
 ```
 
-## 🚀 Instalación
+---
 
-1. **Clona el repositorio:**
+## 🚀 Guía de Instalación y Desarrollo
+
+1. **Clona el repositorio en tu máquina:**
    ```bash
    git clone https://github.com/alsarudev/215files_astro
    cd 215files_astro
    ```
 
-2. **Instala las dependencias:**
+2. **Instala las dependencias del ecosistema:**
    ```bash
    npm install
    ```
 
-3. **Configura las variables de entorno:**
-   Crea un archivo `.env` en la raíz:
+3. **Configura tus variables de Entorno seguras:**
+   Crea un archivo `.env` en la raíz del proyecto para habilitar los envíos de contacto.
    ```env
    EMAIL_USER=tu-email@gmail.com
-   EMAIL_PASS=tu-contraseña-de-aplicación
-   STRIPE_SECRET_KEY=tu-clave-secreta-de-stripe
+   EMAIL_PASS=tu-contraseña-de-aplicación-segura
    ```
 
-4. **Ejecuta el servidor de desarrollo:**
+4. **Arranca el entorno de desarrollo ultrarrápido:**
    ```bash
    npm run dev
    ```
+   > Observa la magia ocurrir visitando `http://localhost:4321`
 
-## 📧 Configuración del Email
+---
 
-### Para Gmail:
-1. Activa la verificación en dos pasos
-2. Genera una contraseña de aplicación
-3. Usa esa contraseña en `EMAIL_PASS`
+## 🧰 Comandos de Producción
 
-### Para Netlify:
-1. Ve a Site Settings → Environment Variables
-2. Agrega `EMAIL_USER` y `EMAIL_PASS`
+| Comando | Finalidad |
+|---------|----------|
+| `npm run dev` | Inicia un Servidor Local de Desarrollo con recarga rápida. |
+| `npm run build` | Compila toda la web hacia una aplicación estática optimizada en la carpeta de producción (`dist/`). |
+| `npm run preview` | Emula el servidor de origen probando cómo funcionará exactamente el proyecto compilado tras hacer un build. |
+| `npx astro check` | Verifica si existen errores de compatibilidad severos en los templates. |
 
-## 🎨 Personalización
+---
 
-### Colores de la marca:
-Edita `src/utils/constants.ts`:
-```typescript
-export const BRAND_COLORS = {
-    primary: 'rgb(255,43,57)',
-    white: '#ffffff',
-    black: '#000000',
-};
-```
+## 🤝 Contribuyendo
 
-### Menú de navegación:
-Edita `src/utils/constants.ts`:
-```typescript
-export const MENU_ITEMS = [
-    {
-        text: "PROYECTOS",
-        href: "#proyectos"
-    },
-    {
-        text: "CONTACTO",
-        href: "#contacto"
-    }
-];
-```
+Si quieres añadir mejoras o proyectos a **215files**:
+1. Crea un Fork de este repositorio.
+2. Abre tu rama de características: `git checkout -b feature/MiEfectoNuevo`
+3. Consolida tus ajustes: `git commit -m 'Añadida Animación en X'`
+4. Súbelos: `git push origin feature/MiEfectoNuevo`
+5. Abre y envíanos tu **Pull Request**.
 
-## 🏗️ Scripts Disponibles
+---
 
-- `npm run dev` - Servidor de desarrollo
-- `npm run build` - Build para producción
-- `npm run preview` - Preview del build
+## 📞 Soporte
 
-## 📦 Deploy
-
-El proyecto está configurado para deploy automático en Netlify:
-
-1. Conecta tu repositorio a Netlify
-2. Configura las variables de entorno
-3. El deploy se ejecuta automáticamente
-
-## 🧹 Clean Code
-
-Este proyecto sigue las mejores prácticas de clean code:
-
-- **Separación de responsabilidades** - JavaScript separado de HTML
-- **Constantes centralizadas** - Configuraciones en `utils/constants.ts`
-- **Funciones helper** - Utilidades reutilizables en `utils/helpers.ts`
-- **Componentes modulares** - Cada componente tiene una responsabilidad específica
-- **TypeScript** - Tipado estático para mejor mantenibilidad
-- **Comentarios descriptivos** - Código autodocumentado
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 📞 Contacto
-
-Para preguntas o soporte, usa el formulario de contacto en el sitio web o pongase en contacto con el desarrollador de la pagina por [correo electronico](mailto:alfonso.sanchez.ruizz@gmail.com).
-
+Diseñado, conceptualizado y codificado con ❤️ para la comunidad audiovisual.  
+Contacta al desarrollador principal a través de correo en: [alfonso.sanchez.ruizz@gmail.com](mailto:alfonso.sanchez.ruizz@gmail.com) o mediante el propio formulario nativo del sitio web.
