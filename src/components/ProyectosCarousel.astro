@@ -67,25 +67,47 @@ const proyectos = [
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
-<section class="bg-black py-12 scroll-mt-24 mt-24" id="proyectos">
-  <div class="flex items-center mb-10 w-full px-4">
-    <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-right:1rem;"></div>
-    <h2 class="text-center text-white text-4xl font-extrabold tracking-wider whitespace-nowrap">PROYECTOS</h2>
-    <div class="hidden md:block flex-grow border-t border-white border-2" style="margin-left:1rem;"></div>
+<section class="bg-black py-20 scroll-mt-24 relative overflow-hidden" id="proyectos">
+  <!-- Luz de ambiente de fondo -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[rgb(255,43,57)]/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <!-- Título con diseño minimalista premium -->
+  <div class="flex items-center justify-center mb-16 w-full px-4 relative z-10">
+    <div class="hidden md:block flex-grow h-[1px] bg-gradient-to-r from-transparent to-white/30 max-w-sm mr-8"></div>
+    <h2 class="text-center text-white text-3xl md:text-5xl font-black tracking-[0.2em] whitespace-nowrap drop-shadow-lg">PROYECTOS</h2>
+    <div class="hidden md:block flex-grow h-[1px] bg-gradient-to-l from-transparent to-white/30 max-w-sm ml-8"></div>
   </div>
-  <div class="relative">
-    <button id="arrow-left" class="flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/60 rounded-full hover:bg-white/80 transition-colors group">
-      <svg class="w-6 h-6 text-white group-hover:-translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+  <div class="relative z-10 max-w-[95rem] mx-auto w-full group/carousel">
+    <!-- Flechas Navigation Premium -->
+    <button id="arrow-left" class="flex items-center justify-center absolute left-4 md:left-8 lg:left-10 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-black/50 backdrop-blur-xl border border-white/20 rounded-full hover:bg-white hover:text-black text-white hover:scale-110 transition-all duration-500 group shadow-[0_0_30px_rgba(0,0,0,0.8)] focus:outline-none cursor-pointer">
+      <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
     </button>
-    <button id="arrow-right" class="flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/60 rounded-full hover:bg-white/80 transition-colors group">
-      <svg class="w-6 h-6 text-white group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    <button id="arrow-right" class="flex items-center justify-center absolute right-4 md:right-8 lg:right-10 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-black/50 backdrop-blur-xl border border-white/20 rounded-full hover:bg-white hover:text-black text-white hover:scale-110 transition-all duration-500 group shadow-[0_0_30px_rgba(0,0,0,0.8)] focus:outline-none cursor-pointer">
+      <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </button>
-    <div class="swiper proyectos-swiper max-w-7xl mx-auto px-4">
+    
+    <!-- Contenedor Swiper interno con su padding ajustado para no tapar los botones -->
+    <div class="swiper proyectos-swiper max-w-7xl mx-auto md:px-20 lg:px-24 py-8">
       <div class="swiper-wrapper">
         {proyectos.map((proyecto) => (
-          <div class="swiper-slide">
-            <img src={proyecto.src} alt={proyecto.alt} class="rounded-2xl w-full h-80 object-cover" />
-            <a href={proyecto.youtube} target="_blank" rel="noopener noreferrer" class="block mt-2 text-center text-white underline hover:text-[rgb(255,43,57)] transition-colors">Ver video en YouTube</a>
+          <div class="swiper-slide group">
+            <!-- Tarjeta Glassmorphism -->
+            <div class="relative w-full aspect-[4/5] md:aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-zinc-900 border border-white/10 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] md:hover:-translate-y-3 md:hover:shadow-[0_25px_50px_-12px_rgba(255,43,57,0.3)] hover:border-white/30 cursor-pointer">
+              
+              <!-- Imagen escalable -->
+              <img src={proyecto.src} alt={proyecto.alt} class="w-full h-full object-cover transition-transform duration-[1500ms] md:group-hover:scale-110" loading="lazy" />
+              
+              <!-- Gradiente oscuro inferior (Fijo en móvil, Transición en desktop) -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-100 md:opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              
+              <!-- Contenido / Botón (Siempre visible en movil, desliza en desktop) -->
+              <div class="absolute bottom-0 left-0 w-full p-4 md:p-6 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <a href={proyecto.youtube} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 md:gap-3 w-full py-3 md:py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white font-medium text-sm md:text-base active:scale-95 md:hover:bg-white hover:text-black transition-all duration-300">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  Ver en YouTube
+                </a>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -94,18 +116,29 @@ const proyectos = [
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
       const swiper = new Swiper('.proyectos-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 30,
+        // Activamos el motor 3D de cobertura
+        effect: 'coverflow',
+        coverflowEffect: {
+          rotate: 15, // Grados de rotación lateral (curvatura tipo cilindro)
+          stretch: 0, // Espacio entre layouts
+          depth: 300, // Profundización en Z en perspectiva (hacia adentro)
+          modifier: 1, // Multiplicador del efecto
+          slideShadows: false, // Desactivadas para dejar puras las sombras en CSS de Tailwind
+        },
+        // Apple effect Mobile/Desktop
+        slidesPerView: 1.25,
+        centeredSlides: true, // Obligatorio para el efecto de cinta circular simétrica
+        spaceBetween: 0,
         breakpoints: {
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 4 }
+          640: { slidesPerView: 2.2, centeredSlides: true },
+          1024: { slidesPerView: 3.2, centeredSlides: true } // Mantenemos todo centrado en escritorio
         },
         loop: true,
         grabCursor: true,
-        centeredSlides: false,
+        speed: 800, // Transición premium fluida lenta
         autoplay: { delay: 3500, disableOnInteraction: false },
       });
-      // Flechas
+      // Flechas premium
       document.getElementById('arrow-left').addEventListener('click', () => swiper.slidePrev());
       document.getElementById('arrow-right').addEventListener('click', () => swiper.slideNext());
     });

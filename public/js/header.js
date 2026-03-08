@@ -6,6 +6,7 @@
 class HeaderHandler {
     constructor() {
         this.header = document.getElementById('main-header');
+        this.navContainer = document.getElementById('nav-container');
         this.proyectosSection = document.getElementById('proyectos');
         this.heroSection = document.getElementById('hero');
         this.logoLink = document.querySelector('#logo a');
@@ -35,11 +36,15 @@ class HeaderHandler {
     }
 
     setHeaderBg(show) {
-        if (this.header) {
+        if (this.navContainer) {
             if (show) {
-                this.header.classList.add('bg-black/80');
+                // Estado Scrolled (Burbuja flotante de cristal)
+                this.navContainer.classList.add('bg-zinc-950/70', 'backdrop-blur-2xl', 'border-white/10', 'shadow-[0_20px_40px_rgba(0,0,0,0.8)]');
+                this.navContainer.classList.remove('border-transparent');
             } else {
-                this.header.classList.remove('bg-black/80');
+                // Estado en Hero (Transparente total)
+                this.navContainer.classList.remove('bg-zinc-950/70', 'backdrop-blur-2xl', 'border-white/10', 'shadow-[0_20px_40px_rgba(0,0,0,0.8)]');
+                this.navContainer.classList.add('border-transparent');
             }
         }
     }
