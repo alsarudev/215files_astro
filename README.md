@@ -1,6 +1,6 @@
 # 🎞️ 215files – Audiovisual Collective Website
 
-Plataforma oficial del colectivo audiovisual [**215files**](https://215files.netlify.app/), un grupo de talentos creativos enfocados en la fotografía y producción de vídeo urbano. 
+Plataforma oficial del colectivo audiovisual [**215files**](https://215files-astro.netlify.app), un grupo de talentos creativos enfocados en la fotografía y producción de vídeo urbano. 
 
 Este proyecto web está diseñado bajo rigurosos estándares de rendimiento y con una estética premium inspirada de las grandes tecnológicas, integrando interfaces de cristal (Glassmorphism), micro-interacciones suaves y animaciones de scroll inmersivas.
 
