@@ -11,9 +11,47 @@
 		<link rel="preconnect" href="https://player.vimeo.com" crossorigin />
 		<link rel="preconnect" href="https://i.vimeocdn.com" crossorigin />
 		<link rel="preconnect" href="https://f.vimeocdn.com" crossorigin />
+
+		<!-- GSAP (GreenSock) y ScrollTrigger para animaciones Premium -->
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 	</head>
 	<body>
 		<slot />
+
+		<!-- Motor de Animaciones Global GSAP -->
+		<script is:inline>
+			document.addEventListener("DOMContentLoaded", () => {
+				// Limpiar posibles hidrataciones defectuosas que esconden elementos
+				setTimeout(() => {
+					gsap.registerPlugin(ScrollTrigger);
+					
+					// Animación 1: Fade Up suave (Ideal para títulos y tarjetas)
+					gsap.utils.toArray('.gsap-fade-up').forEach((elem) => {
+						gsap.fromTo(elem, 
+							{ opacity: 0, y: 60 }, 
+							{ scrollTrigger: { trigger: elem, start: "top 85%" }, opacity: 1, y: 0, duration: 1.2, ease: "power4.out" }
+						);
+					});
+
+					// Animación 2: Revealing Lines (Premium)
+					gsap.utils.toArray('.gsap-reveal-line').forEach((elem) => {
+						gsap.fromTo(elem, 
+							{ scaleX: 0, transformOrigin: "center" }, 
+							{ scrollTrigger: { trigger: elem, start: "top 90%" }, scaleX: 1, duration: 1.5, ease: "expo.out" }
+						);
+					});
+
+					// Animación 3: Zoom In ligero (Ideal para modales simulados o sliders)
+					gsap.utils.toArray('.gsap-scale-in').forEach((elem) => {
+						gsap.fromTo(elem, 
+							{ opacity: 0, scale: 0.8 }, 
+							{ scrollTrigger: { trigger: elem, start: "top 85%" }, opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }
+						);
+					});
+				}, 100);
+			});
+		</script>
 	</body>
 </html>
 
